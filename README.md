@@ -39,3 +39,5 @@ There are some usefull links: :closed_book:
 :link: http://thucydides.info/docs/serenity-staging/ - official documentation Serenity BDD
 
 :link: https://jbehave.org/reference/stable/index.html - official documentation JBhave
+
+:warning: Don't make any other actions that not provided in test cases (don't delete, modify, move, change, etc any data in application)
