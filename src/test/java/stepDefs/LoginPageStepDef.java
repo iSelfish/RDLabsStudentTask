@@ -31,7 +31,7 @@ public class LoginPageStepDef extends DefaultStepsData {
     }
 
     @Then("error message appears with text: $errorText")
-    public void checkErrorMessageAfterUnsuccesfulLogin(String errorTextMessage) {
+    public void checkErrorMessageAfterUnsuccessfulLogin(String errorTextMessage) {
         softly.assertThat(loginPageSteps.getErrorMessageAfterLogin()).as("Wrong message is shown")
                 .isEqualTo(errorTextMessage);
     }
