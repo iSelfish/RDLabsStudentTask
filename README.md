@@ -40,4 +40,6 @@ There are some usefull links: :closed_book:
 
 :link: https://jbehave.org/reference/stable/index.html - official documentation JBhave
 
+:link: https://joel-costigliola.github.io/assertj/ - - official documentation AssertJ
+
 :warning: Don't make any other actions that not provided in test cases (don't delete, modify, move, change, etc any data in application)
