@@ -27,10 +27,10 @@ public class DashboardPageSteps extends DefaultStepsData {
         ItemsContainer itemsContainer = ItemsContainer.getItemsContainerName(sectionName);
         switch (itemsContainer) {
             case EMPLOYEE_DISTRIBUTION:
-                dashboardPage.getThreeDotsButton().waitUntilEnabled().click();
+                dashboardPage.getEmployeeThreeDotsButton().waitUntilEnabled().click();
                 break;
             case LEAVE_TAKEN:
-                dashboardPage.getThreeDotsButton().waitUntilEnabled().click();
+                dashboardPage.getLeavesThreeDotsButton().waitUntilEnabled().click();
                 break;
             default:
                 throw new IllegalStateException("Unexpected value: " + itemsContainer);
