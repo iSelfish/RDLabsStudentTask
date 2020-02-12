@@ -26,9 +26,11 @@ public class DashboardPageStepDef extends DefaultStepsData {
 
     //https://jbehave.org/reference/latest/aliases.html
 
-    @When("I click on hide menu button")
-    public void whenClickOnTheHideMenuButton() {
-        dashboardPageSteps.clickOnHideMenuButton();
+    @When("I click on $condition menu button")
+    public void whenClickOnTheHideMenuButton(String condition) {
+        if ((condition.equals("hide")) || (condition.equals("show"))) {
+            dashboardPageSteps.clickOnHideMenuButton();
+        }
     }
 
     @Then("main menu $condition")
@@ -36,6 +38,9 @@ public class DashboardPageStepDef extends DefaultStepsData {
         String warningMessage = "Menu not " + condition + " after clicking on the hide/show menu button";
         if (condition.equals("disappear")) {
             softly.assertThat(commonSteps.isMenuAvatarVisibleNow()).as(warningMessage).isFalse();
+        }
+        if (condition.equals("appear")) {
+            softly.assertThat(commonSteps.isMenuAvatarVisibleNow()).as(warningMessage).isTrue();
         }
     }
 
