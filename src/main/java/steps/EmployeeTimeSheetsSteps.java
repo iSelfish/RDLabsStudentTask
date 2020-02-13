@@ -12,6 +12,7 @@ public class EmployeeTimeSheetsSteps extends DefaultStepsData {
 
     @Step
     public void searchByEmployeeName(String name) {
+        employeeTimeSheetsPage.switchTononcoreIframe();
         employeeTimeSheetsPage.getSearchInputField().waitUntilEnabled().click();
         employeeTimeSheetsPage.getSearchInputField().clear();
         log.info("Searching by name: " + name);
@@ -20,6 +21,8 @@ public class EmployeeTimeSheetsSteps extends DefaultStepsData {
 
     @Step
     public String getTextFromAutoCompleteNameField() {
-        return employeeTimeSheetsPage.getEmployeeNameAutoCompleteElement().withTimeoutOf(Duration.ofSeconds(5)).waitUntilVisible().getText();
+        String textFromAutoCompleteNameField = employeeTimeSheetsPage.getEmployeeNameAutoCompleteElement().withTimeoutOf(Duration.ofSeconds(5)).waitUntilVisible().getText();
+        employeeTimeSheetsPage.switchToDefaultIframe();
+        return textFromAutoCompleteNameField;
     }
 }
