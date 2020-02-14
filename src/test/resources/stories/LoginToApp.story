@@ -43,7 +43,7 @@ Then I check that following social-media buttons are visible:
 
 !-- TODO implement this scenario
 Scenario: AC-6 Check that text "admin" is shown by default on login page in user name field
-Meta: @regression @debug
+Meta: @regression
 Then text 'admin' is shown by default on login page in user name field
 
 !-- TODO implement this scenario
