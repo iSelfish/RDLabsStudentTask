@@ -30,6 +30,12 @@ public class LoginPageStepDef extends DefaultStepsData {
         loginPageSteps.loginToApplication(login, password);
     }
 
+    @Then("text '$admin' is shown by default on login page in user name field")
+    public void checkTextInUserNameField(String text){
+        softly.assertThat(loginPageSteps.getTextFromUserName()).as("Wrong text in user name field")
+                .isEqualTo(text);
+    }
+
     @Then("error message appears with text: $errorText")
     public void checkErrorMessageAfterUnsuccessfulLogin(String errorTextMessage) {
         softly.assertThat(loginPageSteps.getErrorMessageAfterLogin()).as("Wrong message is shown")

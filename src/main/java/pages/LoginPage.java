@@ -38,6 +38,13 @@ public class LoginPage extends BasePage {
         loginInputField.sendKeys(userName);
     }
 
+    public String getTextFromUserName() {
+        log.info("Getting text from User Name field");
+        System.out.println("loginInputFieldloginInputField = " + loginInputField.waitUntilVisible().waitUntilClickable().getText());
+        return loginInputField.waitUntilVisible().waitUntilClickable().getValue();
+    }
+
+
     public void enterPassword(String password) {
         log.info("Login to app with password " + password);
         passwordInputField.waitUntilVisible().waitUntilClickable().clear();
