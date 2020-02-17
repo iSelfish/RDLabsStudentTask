@@ -13,13 +13,13 @@ import static utils.DateUtils.DATEPATTERN_MY;
 import static utils.DateUtils.getDateInFutureOrPastFromNow;
 import static utils.SessionVariables.DATE_OF_BIRTH;
 
-public class PersonalDatailsStepDef extends DefaultStepsData {
+public class PersonalDetailsStepDef extends DefaultStepsData {
 
     @Steps
     PersonalDetailsSteps personalDetailsSteps;
 
     @Then("I save current Date of Birth to session")
-    public void saveCurentDateOfBirthToSession() {
+    public void saveCurrentDateOfBirthToSession() {
         DATE_OF_BIRTH.put(personalDetailsSteps.getValueFromDateOfBirthField());
     }
 
