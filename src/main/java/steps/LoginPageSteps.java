@@ -17,10 +17,17 @@ public class LoginPageSteps extends DefaultStepsData {
         loginPage.enterPassword(password);
         loginPage.clickOnLoginButton();
     }
+
     @Step
-    public String getTextFromUserName(){
+    public String getTextFromUserName() {
         return loginPage.getTextFromUserName();
     }
+
+    @Step
+    public String getTextFromInvalidCredentialsPopUp() {
+        return loginPage.getTextFromInvalidCredentialsPopUp();
+    }
+
     @Step
     public String getErrorMessageAfterLogin() {
         log.info("Getting error message after unsuccessful login to application");

@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.WebElementFacade;
+import pageComponents.PopUp;
 
 import java.util.List;
 
@@ -32,6 +33,9 @@ public class LoginPage extends BasePage {
     @FindBy(css = ".social-buttons")
     private WebElementFacade socialMediaContainer;
 
+    @FindBy(css = "#toast-container")
+    private WebElementFacade invalidCredentialsPopUpContainer;
+
     public void enterUserName(String userName) {
         log.info("Login to app with userName " + userName);
         loginInputField.waitUntilVisible().waitUntilClickable().clear();
@@ -40,8 +44,14 @@ public class LoginPage extends BasePage {
 
     public String getTextFromUserName() {
         log.info("Getting text from User Name field");
-        System.out.println("loginInputFieldloginInputField = " + loginInputField.waitUntilVisible().waitUntilClickable().getText());
         return loginInputField.waitUntilVisible().waitUntilClickable().getValue();
+    }
+
+    public String getTextFromInvalidCredentialsPopUp() {
+        log.info("Getting text from Invalid Credentials pop up");
+        PopUp popUp = new PopUp(getInvalidCredentialsPopUpContainer().waitUntilEnabled());
+        System.out.println("InvalidCredentialsPopUp = " + invalidCredentialsPopUpContainer.waitUntilVisible().waitUntilClickable().getText());
+        return popUp.getPopUpMessage();
     }
 
 
