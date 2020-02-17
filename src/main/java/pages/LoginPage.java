@@ -50,7 +50,6 @@ public class LoginPage extends BasePage {
     public String getTextFromInvalidCredentialsPopUp() {
         log.info("Getting text from Invalid Credentials pop up");
         PopUp popUp = new PopUp(getInvalidCredentialsPopUpContainer().waitUntilEnabled());
-        System.out.println("InvalidCredentialsPopUp = " + invalidCredentialsPopUpContainer.waitUntilVisible().waitUntilClickable().getText());
         return popUp.getPopUpMessage();
     }
 
