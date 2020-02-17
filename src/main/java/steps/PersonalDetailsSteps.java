@@ -20,6 +20,15 @@ public class PersonalDetailsSteps extends DefaultStepsData {
     }
 
     @Step
+    public void checkGenderButton(String gender) {
+        personalDetailsPage.clickOnGenderRadioButton(gender);
+    }
+
+    @Step
+    public boolean checkSelectedGenderRadioButton(String gender) {
+        return personalDetailsPage.checkSelectedGenderRadioButton(gender);
+    }
+    @Step
     public List<String> getOptionsFromNationalitySelect() {
         List<String> nationalityOptions = personalDetailsPage.getNationalitySelect().thenFindAll(By.xpath("./..//li//span"))
                 .stream().map(we -> we.getAttribute("innerText")).collect(Collectors.toList());

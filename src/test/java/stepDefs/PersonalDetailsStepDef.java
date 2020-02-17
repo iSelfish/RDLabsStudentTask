@@ -18,6 +18,11 @@ public class PersonalDetailsStepDef extends DefaultStepsData {
     @Steps
     PersonalDetailsSteps personalDetailsSteps;
 
+    @When("I click on $text radio button")
+    public void checkGenderButton(String gender){
+        personalDetailsSteps.checkGenderButton(gender);
+    }
+
     @Then("I save current Date of Birth to session")
     public void saveCurrentDateOfBirthToSession() {
         DATE_OF_BIRTH.put(personalDetailsSteps.getValueFromDateOfBirthField());
@@ -28,6 +33,17 @@ public class PersonalDetailsStepDef extends DefaultStepsData {
         String currentDate = personalDetailsSteps.getValueFromDateOfBirthField();
         String updatedDate = getDateInFutureOrPastFromNow(DATEPATTERN_MY, 1, currentDate);
         personalDetailsSteps.enterDateIntoDateBirthField(updatedDate);
+    }
+
+    @Then("$radioButtonName radio button is $condition")
+    public void checkThatRadioButtonUnchecked(String radioButtonName, String condition) {
+        if (condition.contains("not")) {
+            softly.assertThat(personalDetailsSteps.checkSelectedGenderRadioButton(radioButtonName))
+                    .as("After checking whether the radio button is not selected").isFalse();
+        } else {
+            softly.assertThat(personalDetailsSteps.checkSelectedGenderRadioButton(radioButtonName))
+                    .as("After checking whether the radio button is selected").isTrue();
+        }
     }
 
     @Then("Date of Birth field contains old date (date from session)")
