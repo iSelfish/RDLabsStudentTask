@@ -51,7 +51,19 @@ public class DashboardPageStepDef extends DefaultStepsData {
 
     @Then("Legend component appears in $sectionName section")
     public void checkThatLegendAppears(String sectionName) {
-        softly.assertThat(dashboardPageSteps.checkThatLegendAppearsIn(sectionName)).as("Legend component not appears").isTrue();
+        softly.assertThat(dashboardPageSteps.checkThatLegendAppearsIn(sectionName))
+                .as("Legend component not appears").isTrue();
     }
 
+    @Then("$text section is present on Dashboard page with header $text")
+    public void checkSectionHeader(String sectionName, String headerText) {
+        softly.assertThat(dashboardPageSteps.getTextFromSectionHeader(sectionName))
+                .as("Wrong News header").isEqualTo(headerText);
+    }
+
+    @Then("news counter under News section is same as real amount of news in list")
+    public void checkNewsCountEqualsToRealAmount() {
+        softly.assertThat(dashboardPageSteps.getShowingCountOfNews())
+                .as("Wrong news counter").isEqualTo(dashboardPageSteps.getRealCountOfNews());
+    }
 }

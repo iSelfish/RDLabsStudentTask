@@ -48,4 +48,26 @@ public class DashboardPageSteps extends DefaultStepsData {
                 throw new IllegalStateException("Unexpected value: " + itemsContainer);
         }
     }
+
+    @Step
+    public int getShowingCountOfNews() {
+        String newsCountText = dashboardPage.getNewsCount().getText().split("/")[1].trim();
+        return Integer.parseInt(newsCountText);
+    }
+
+    @Step
+    public int getRealCountOfNews() {
+        return dashboardPage.getCountOfNews();
+    }
+
+    @Step
+    public String getTextFromSectionHeader(String sectionName) {
+        ItemsContainer itemsContainer = ItemsContainer.getItemsContainerName(sectionName);
+        switch (itemsContainer) {
+            case NEWS:
+                return dashboardPage.getNewsHeader().getText();
+            default:
+                throw new IllegalStateException("Unexpected value: " + itemsContainer);
+        }
+    }
 }

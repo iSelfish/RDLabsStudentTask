@@ -4,6 +4,13 @@ import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import net.serenitybdd.core.annotations.findby.FindBy;
 import net.serenitybdd.core.pages.WebElementFacade;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.assertj.core.util.IterableUtil.sizeOf;
 
 @Getter
 @Slf4j
@@ -35,9 +42,24 @@ public class DashboardPage extends BasePage {
     @FindBy(css = "#legend")
     private WebElementFacade leavesLegend;
 
+    @FindBy(xpath = "//div[@id='dashboard__viewNewsOnDashboard']/../div[@class='dashboardCard-title-for-card']")
+    private WebElementFacade newsHeader;
+
+    @FindBy(xpath = "//div[@id='dashboard__viewNewsOnDashboard']//div[@class='right']")
+    private WebElementFacade newsCount;
+
+    private By allNews = By.xpath("//div[@id='dashboard__viewNewsOnDashboard']//li");
+
     public void clickOnHideMenuButton() {
         log.info("Clicking on the [Hide menu] button");
         hideMenuButton.waitUntilVisible().waitUntilClickable().click();
     }
 
+    public int getCountOfNews() {
+        List<String> newContainer = new ArrayList<>();
+        for (WebElement element : getDriver().findElements(allNews)) {
+            newContainer.add(element.getText());
+        }
+        return sizeOf(newContainer);
+    }
 }
