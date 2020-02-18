@@ -25,9 +25,11 @@ Then Legend component appears in Leave Taken from January by Subunit section
 Scenario: AC-3 Check that news counter and actual amount of news are same
 Meta: @regression
 Then News section is present on Dashboard page with header News
-Then news counter under News section is same as real amount of news in list
+And News counter under News section is same as real amount of news in list
 
 !-- TODO implement this scenario
 Scenario: AC-4 Check that documents counter and actual amount of documents are same
-
+Meta: @regression
+Then Documents section is present on Dashboard page with header Documents
+And Documents counter under Documents section is same as real amount of Documents in list
 

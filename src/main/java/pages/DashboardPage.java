@@ -45,10 +45,17 @@ public class DashboardPage extends BasePage {
     @FindBy(xpath = "//div[@id='dashboard__viewNewsOnDashboard']/../div[@class='dashboardCard-title-for-card']")
     private WebElementFacade newsHeader;
 
+    @FindBy(xpath = "//div[@id='dashboard__viewDocumentsOnDashboard']/../div[@class='dashboardCard-title-for-card']")
+    private WebElementFacade documentsHeader;
+
     @FindBy(xpath = "//div[@id='dashboard__viewNewsOnDashboard']//div[@class='right']")
     private WebElementFacade newsCount;
 
+    @FindBy(xpath = "//div[@id='dashboard__viewDocumentsOnDashboard']//div[@class='right']")
+    private WebElementFacade documentsCount;
+
     private By allNews = By.xpath("//div[@id='dashboard__viewNewsOnDashboard']//li");
+    private By allDocuments = By.xpath("//div[@id='dashboard__viewDocumentsOnDashboard']//li");
 
     public void clickOnHideMenuButton() {
         log.info("Clicking on the [Hide menu] button");
@@ -56,10 +63,18 @@ public class DashboardPage extends BasePage {
     }
 
     public int getCountOfNews() {
-        List<String> newContainer = new ArrayList<>();
+        List<String> container = new ArrayList<>();
         for (WebElement element : getDriver().findElements(allNews)) {
-            newContainer.add(element.getText());
+            container.add(element.getText());
         }
-        return sizeOf(newContainer);
+        return sizeOf(container);
+    }
+
+    public int getCountOfDocuments() {
+        List<String> container = new ArrayList<>();
+        for (WebElement element : getDriver().findElements(allDocuments)) {
+            container.add(element.getText());
+        }
+        return sizeOf(container);
     }
 }

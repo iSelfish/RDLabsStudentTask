@@ -61,9 +61,15 @@ public class DashboardPageStepDef extends DefaultStepsData {
                 .as("Wrong News header").isEqualTo(headerText);
     }
 
-    @Then("news counter under News section is same as real amount of news in list")
+    @Then("News counter under News section is same as real amount of news in list")
     public void checkNewsCountEqualsToRealAmount() {
         softly.assertThat(dashboardPageSteps.getShowingCountOfNews())
                 .as("Wrong news counter").isEqualTo(dashboardPageSteps.getRealCountOfNews());
+    }
+
+    @Then("Documents counter under Documents section is same as real amount of Documents in list")
+    public void checkDocumentsCountEqualsToRealAmount() {
+        softly.assertThat(dashboardPageSteps.getShowingCountOfDocuments())
+                .as("Wrong documents counter").isEqualTo(dashboardPageSteps.getRealCountOfDocuments());
     }
 }
