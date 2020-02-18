@@ -70,10 +70,19 @@ public class DashboardPage extends BasePage {
         return sizeOf(container);
     }
 
-    public int getCountOfDocuments() {
+    public int getRealCountOf(String newsOrDocuments) {
         List<String> container = new ArrayList<>();
-        for (WebElement element : getDriver().findElements(allDocuments)) {
-            container.add(element.getText());
+        switch (newsOrDocuments) {
+            case "News":
+                for (WebElement element : getDriver().findElements(allNews)) {
+                    container.add(element.getText());
+                }
+                break;
+            case "Documents":
+                for (WebElement element : getDriver().findElements(allDocuments)) {
+                    container.add(element.getText());
+                }
+                break;
         }
         return sizeOf(container);
     }
