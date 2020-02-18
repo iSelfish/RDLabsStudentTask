@@ -28,6 +28,12 @@ public class PersonalDetailsPage extends BasePage {
     @FindBy(xpath = "//label[@for='emp_gender_2']")
     private WebElementFacade femaleRadioButton;
 
+    @FindBy(xpath = "//sf-decorator/div/button")
+    private WebElementFacade saveButton;
+
+    @FindBy(xpath = "//span[@class='help-block-message']")
+    private WebElementFacade dateOfBirthErrorMessage;
+
     public void enterDateOfBirth(String date) {
         log.info(String.format("Putting %s date into [Date of birth] field", date));
         dateOfBirthInputField.clear();
@@ -49,13 +55,18 @@ public class PersonalDetailsPage extends BasePage {
         }
     }
 
+    public void clickSaveButton() {
+        log.info("click save button");
+        saveButton.waitUntilClickable().click();
+    }
+
     public boolean checkSelectedGenderRadioButton(String gender) {
         log.info("check selected gender radio button");
         switch (gender) {
             case ("Male"):
                 return Boolean.parseBoolean(maleRadioButton.findElement(By.xpath("./../input")).getAttribute("checked"));
             case ("Female"):
-                log.info("check that {} radio button is checked",gender);
+                log.info("check that {} radio button is checked", gender);
                 return Boolean.parseBoolean(femaleRadioButton.findElement(By.xpath("./../input")).getAttribute("checked"));
             default:
                 System.out.println("Such gender wasn't found");

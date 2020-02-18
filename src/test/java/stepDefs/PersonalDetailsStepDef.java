@@ -19,8 +19,13 @@ public class PersonalDetailsStepDef extends DefaultStepsData {
     PersonalDetailsSteps personalDetailsSteps;
 
     @When("I click on $text radio button")
-    public void checkGenderButton(String gender){
+    public void checkGenderButton(String gender) {
         personalDetailsSteps.checkGenderButton(gender);
+    }
+
+    @When("I click save button")
+    public void clickSaveButton() {
+        personalDetailsSteps.clickSaveButton();
     }
 
     @Then("I save current Date of Birth to session")
@@ -28,10 +33,23 @@ public class PersonalDetailsStepDef extends DefaultStepsData {
         DATE_OF_BIRTH.put(personalDetailsSteps.getValueFromDateOfBirthField());
     }
 
+    @Then("Error message with text '$text' appears")
+    public void checkTextFromErrorMessage(String errorText) {
+        softly.assertThat(personalDetailsSteps.getTextFromErrorMessage())
+                .as("After getting error message").isEqualTo(errorText);
+    }
+
     @When("I change Date of Birth added 1 day to old date")
     public void changeDateOfBirth() {
         String currentDate = personalDetailsSteps.getValueFromDateOfBirthField();
         String updatedDate = getDateInFutureOrPastFromNow(DATEPATTERN_MY, 1, currentDate);
+        personalDetailsSteps.enterDateIntoDateBirthField(updatedDate);
+    }
+
+    @When("I set Date Of Birth as tomorrow date")
+    public void setTomorrowDateOfBirth() {
+        String currentDate = personalDetailsSteps.getValueFromDateOfBirthField();
+        String updatedDate = getDateInFutureOrPastFromNow(DATEPATTERN_MY, 1);
         personalDetailsSteps.enterDateIntoDateBirthField(updatedDate);
     }
 

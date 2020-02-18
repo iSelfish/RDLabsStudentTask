@@ -25,9 +25,20 @@ public class PersonalDetailsSteps extends DefaultStepsData {
     }
 
     @Step
+    public void clickSaveButton() {
+        personalDetailsPage.clickSaveButton();
+    }
+
+    @Step
+    public String getTextFromErrorMessage() {
+        return personalDetailsPage.getDateOfBirthErrorMessage().getText();
+    }
+
+    @Step
     public boolean checkSelectedGenderRadioButton(String gender) {
         return personalDetailsPage.checkSelectedGenderRadioButton(gender);
     }
+
     @Step
     public List<String> getOptionsFromNationalitySelect() {
         List<String> nationalityOptions = personalDetailsPage.getNationalitySelect().thenFindAll(By.xpath("./..//li//span"))
