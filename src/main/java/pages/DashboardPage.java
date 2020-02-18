@@ -62,14 +62,6 @@ public class DashboardPage extends BasePage {
         hideMenuButton.waitUntilVisible().waitUntilClickable().click();
     }
 
-    public int getCountOfNews() {
-        List<String> container = new ArrayList<>();
-        for (WebElement element : getDriver().findElements(allNews)) {
-            container.add(element.getText());
-        }
-        return sizeOf(container);
-    }
-
     public int getRealCountOf(String newsOrDocuments) {
         List<String> container = new ArrayList<>();
         switch (newsOrDocuments) {
