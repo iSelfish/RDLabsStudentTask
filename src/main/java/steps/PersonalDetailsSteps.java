@@ -30,8 +30,18 @@ public class PersonalDetailsSteps extends DefaultStepsData {
     }
 
     @Step
-    public String getTextFromErrorMessage() {
+    public String getTextFromDateOfBirthErrorMessage() {
         return personalDetailsPage.getDateOfBirthErrorMessage().getText();
+    }
+
+    @Step
+    public String getTextFromRaceAndEthnicityErrorMessage() {
+        return personalDetailsPage.getRaceAndEthnicityErrorMessage().getText();
+    }
+
+    @Step
+    public String getValueFromRaceAndEthnicitySelect() {
+        return personalDetailsPage.getRaceAndEthnicitySelect().getValue();
     }
 
     @Step

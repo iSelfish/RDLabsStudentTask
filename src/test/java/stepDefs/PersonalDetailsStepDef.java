@@ -33,10 +33,22 @@ public class PersonalDetailsStepDef extends DefaultStepsData {
         DATE_OF_BIRTH.put(personalDetailsSteps.getValueFromDateOfBirthField());
     }
 
-    @Then("Error message with text '$text' appears")
-    public void checkTextFromErrorMessage(String errorText) {
-        softly.assertThat(personalDetailsSteps.getTextFromErrorMessage())
-                .as("After getting error message").isEqualTo(errorText);
+    @Then("Date of birth error message with text '$text' appears")
+    public void getTextFromDateOfBirthErrorMessage(String errorText) {
+        softly.assertThat(personalDetailsSteps.getTextFromDateOfBirthErrorMessage())
+                .as("After getting date of birth error message").isEqualTo(errorText);
+    }
+
+    @Then("EEO Race and Ethnicity error message with text '$text' appears")
+    public void getTextFromRaceAndEthnicityErrorMessage(String errorText) {
+        softly.assertThat(personalDetailsSteps.getTextFromRaceAndEthnicityErrorMessage())
+                .as("After getting Race and Ethnicity error message").isEqualTo(errorText);
+    }
+
+    @Then("EEO Race and Ethnicity select has NO value by default")
+    public void checkRaceAndEthnicityHasNoValueByDefault() {
+        softly.assertThat(personalDetailsSteps.getValueFromRaceAndEthnicitySelect())
+                .as("After checking value Race and Ethnicity select").isEqualTo("-- Select --");
     }
 
     @When("I change Date of Birth added 1 day to old date")

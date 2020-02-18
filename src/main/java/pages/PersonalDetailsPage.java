@@ -34,6 +34,12 @@ public class PersonalDetailsPage extends BasePage {
     @FindBy(xpath = "//span[@class='help-block-message']")
     private WebElementFacade dateOfBirthErrorMessage;
 
+    @FindBy(xpath = "//*[@id='eeo_race_ent_inputfileddiv']/span")
+    private WebElementFacade RaceAndEthnicityErrorMessage;
+
+    @FindBy(xpath = "//*[@id='eeo_race_ent_inputfileddiv']/div/input")
+    private WebElementFacade RaceAndEthnicitySelect;
+
     public void enterDateOfBirth(String date) {
         log.info(String.format("Putting %s date into [Date of birth] field", date));
         dateOfBirthInputField.clear();
