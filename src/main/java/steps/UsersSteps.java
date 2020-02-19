@@ -22,7 +22,7 @@ public class UsersSteps extends DefaultStepsData {
     }
 
     @Step
-    public FilterUsersModalWindow getFiltetUsersWindow() {
+    public FilterUsersModalWindow getFilterUsersWindow() {
         return new FilterUsersModalWindow(usersPage.getFilterUsersModalWindow());
     }
 
@@ -43,6 +43,36 @@ public class UsersSteps extends DefaultStepsData {
         log.info("Clicking on the autocomplete search result");
         employeeDropDown.waitUntilVisible().waitUntilClickable().click();
         employeeDropDown.waitUntilNotVisible();
+    }
+
+    @Step
+    public void changeStatusTo(String status) {
+        FilterUsersModalWindow filterUsersModalWindow = FILTER_USERS_WINDOW.get();
+        log.info("Filtering by Status: " + status);
+        filterUsersModalWindow.changeStatusTo(status);
+    }
+
+    @Step
+    public boolean employeeIsShown(String employeeName) {
+        List<UsersGrid> allItems;
+        int amountOfShownEmployees = 0;
+        boolean thereIsNextPage;
+        do {
+            allItems = getUsersGrid();
+            for (UsersGrid allItem : allItems) {
+                if (allItem.getEmployeeName().equals(employeeName)) {
+                    amountOfShownEmployees++;
+                }
+            }
+            allItems.clear();
+            if (usersPage.getNextPageButton().isVisible()) {
+                thereIsNextPage = true;
+                usersPage.getNextPageButton().waitUntilClickable().click();
+            } else {
+                thereIsNextPage = false;
+            }
+        } while (thereIsNextPage);
+        return amountOfShownEmployees != 0;
     }
 
     @Step

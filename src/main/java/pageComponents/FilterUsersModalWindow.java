@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import net.serenitybdd.core.pages.WebElementFacade;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 
 @Getter
 @Slf4j
@@ -38,6 +39,24 @@ public class FilterUsersModalWindow {
     public void clickOnSearchButton() {
         log.info("Clicking on the [Search button]");
         this.searchButton.waitUntilEnabled().waitUntilClickable().click();
+    }
+
+    public void changeStatusTo(String status) {
+        log.info("Change Status to " + status);
+        switch (status){
+            case "All":
+                this.status.waitUntilEnabled().waitUntilClickable().sendKeys(Keys.ARROW_UP, Keys.ARROW_UP, Keys.ENTER);
+                break;
+            case "Disabled":
+                this.status.waitUntilEnabled().waitUntilClickable().sendKeys(Keys.ARROW_DOWN, Keys.ARROW_DOWN, Keys.ENTER);
+                break;
+            case "Enabled":
+                this.status.waitUntilEnabled().waitUntilClickable().sendKeys(Keys.ARROW_UP, Keys.ARROW_UP, Keys.ARROW_DOWN, Keys.ENTER);
+                break;
+            default:
+                log.info("Wrong status name! Status wasn't changed");
+                break;
+        }
     }
 
     public void clickOnCancelButton() {

@@ -21,6 +21,22 @@ public class UsersPageStepDef extends DefaultStepsData {
         usersSteps.filterUsersByEmployeeName(employeeName);
     }
 
+    @When("filter users by Status $status")
+    public void filterUsersByStatus(String status) {
+        usersSteps.changeStatusTo(status);
+    }
+
+    @Then("I check that Employee with name $name is $condition in the search result")
+    public void checkEmployeeIsShown(String employeeName, String condition) {
+        if (condition.contains("not")) {
+            softly.assertThat(usersSteps.employeeIsShown(employeeName))
+                    .as("[employeeName] is not shown").isFalse();
+        } else {
+            softly.assertThat(usersSteps.employeeIsShown(employeeName))
+                    .as("[employeeName] is shown").isTrue();
+        }
+    }
+
     @Then("record is shown with following parameters:$table")
     public void checkResultOfFiltering(ExamplesTable examplesTable) {
         Map<String, String> row = examplesTable.getRow(0);

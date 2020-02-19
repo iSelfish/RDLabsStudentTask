@@ -14,6 +14,9 @@ public class UsersPage extends BasePage {
     @FindBy(xpath = "//a[@data-tooltip='Filter']")
     private WebElementFacade filterButton;
 
+    @FindBy(xpath = "//a[@ng-click='list.nextPage()']")
+    private WebElementFacade nextPageButton;
+
     public void clickOnFilterButton() {
         log.info("Clicking on the [Filter button]");
         filterButton.withTimeoutOf(Duration.ofSeconds(15)).waitUntilVisible();
