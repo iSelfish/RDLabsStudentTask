@@ -53,6 +53,13 @@ public class UsersSteps extends DefaultStepsData {
     }
 
     @Step
+    public void changeAdminRoleTo(String adminRole) {
+        FilterUsersModalWindow filterUsersModalWindow = FILTER_USERS_WINDOW.get();
+        log.info("Filtering by Admin Role: " + adminRole);
+        filterUsersModalWindow.changeAdminRoleTo(adminRole);
+    }
+
+    @Step
     public boolean employeeIsShown(String employeeName) {
         List<UsersGrid> allItems;
         int amountOfShownEmployees = 0;

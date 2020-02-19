@@ -59,6 +59,33 @@ public class FilterUsersModalWindow {
         }
     }
 
+    public void changeAdminRoleTo(String adminRole) {
+        log.info("Change Admin Role to " + adminRole);
+        switch (adminRole){
+            case "Asset Manager":
+                this.adminRole.waitUntilEnabled().waitUntilClickable().sendKeys(Keys.ARROW_DOWN, Keys.ENTER);
+                break;
+            case "Global Admin":
+                this.adminRole.waitUntilEnabled().waitUntilClickable().sendKeys(Keys.ARROW_DOWN, Keys.ARROW_DOWN, Keys.ENTER);
+                break;
+            case "Global Salary Admin":
+                this.adminRole.waitUntilEnabled().waitUntilClickable().sendKeys(Keys.ARROW_DOWN, Keys.ARROW_DOWN, Keys.ARROW_DOWN, Keys.ENTER);
+                break;
+            case "Recruitment Manager":
+                this.adminRole.waitUntilEnabled().waitUntilClickable().sendKeys(Keys.ARROW_DOWN, Keys.ARROW_DOWN, Keys.ARROW_DOWN, Keys.ARROW_DOWN, Keys.ENTER);
+                break;
+            case "Regional HR Admin":
+                this.adminRole.waitUntilEnabled().waitUntilClickable().sendKeys(Keys.ARROW_DOWN, Keys.ARROW_DOWN, Keys.ARROW_DOWN, Keys.ARROW_DOWN, Keys.ARROW_DOWN, Keys.ENTER);
+                break;
+            case "Time Manager":
+                this.adminRole.waitUntilEnabled().waitUntilClickable().sendKeys(Keys.ARROW_DOWN, Keys.ARROW_DOWN, Keys.ARROW_DOWN, Keys.ARROW_DOWN, Keys.ARROW_DOWN, Keys.ARROW_DOWN, Keys.ENTER);
+                break;
+            default:
+                log.info("Wrong Admin Role name! Admin Role wasn't changed");
+                break;
+        }
+    }
+
     public void clickOnCancelButton() {
         log.info("Clicking on the [Cancel button]");
         this.cancelButton.waitUntilEnabled().waitUntilClickable().click();

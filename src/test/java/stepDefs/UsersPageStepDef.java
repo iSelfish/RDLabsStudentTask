@@ -26,6 +26,11 @@ public class UsersPageStepDef extends DefaultStepsData {
         usersSteps.changeStatusTo(status);
     }
 
+    @When("filter users by Admin Role $adminRole")
+    public void filterUsersAdminRole(String adminRole) {
+        usersSteps.changeAdminRoleTo(adminRole);
+    }
+
     @Then("I check that Employee with name $name is $condition in the search result")
     public void checkEmployeeIsShown(String employeeName, String condition) {
         if (condition.contains("not")) {
