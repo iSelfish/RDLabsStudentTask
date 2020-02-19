@@ -43,15 +43,18 @@ public class FilterUsersModalWindow {
 
     public void changeStatusTo(String status) {
         log.info("Change Status to " + status);
-        switch (status){
+        switch (status) {
             case "All":
-                this.status.waitUntilEnabled().waitUntilClickable().sendKeys(Keys.ARROW_UP, Keys.ARROW_UP, Keys.ENTER);
+                this.status.waitUntilClickable().click();
+                this.status.find(By.xpath("./..//ul//span[text()='All']")).waitUntilEnabled().waitUntilClickable().click();
                 break;
             case "Disabled":
-                this.status.waitUntilEnabled().waitUntilClickable().sendKeys(Keys.ARROW_DOWN, Keys.ARROW_DOWN, Keys.ENTER);
+                this.status.waitUntilClickable().click();
+                this.status.find(By.xpath("./..//ul//span[text()='Disabled']")).waitUntilEnabled().waitUntilClickable().click();
                 break;
             case "Enabled":
-                this.status.waitUntilEnabled().waitUntilClickable().sendKeys(Keys.ARROW_UP, Keys.ARROW_UP, Keys.ARROW_DOWN, Keys.ENTER);
+                this.status.waitUntilClickable().click();
+                this.status.find(By.xpath("./..//ul//span[text()='Enabled']")).waitUntilEnabled().waitUntilClickable().click();
                 break;
             default:
                 log.info("Wrong status name! Status wasn't changed");
@@ -61,24 +64,30 @@ public class FilterUsersModalWindow {
 
     public void changeAdminRoleTo(String adminRole) {
         log.info("Change Admin Role to " + adminRole);
-        switch (adminRole){
+        switch (adminRole) {
             case "Asset Manager":
-                this.adminRole.waitUntilEnabled().waitUntilClickable().sendKeys(Keys.ARROW_DOWN, Keys.ENTER);
+                this.adminRole.waitUntilClickable().click();
+                this.adminRole.find(By.xpath("./..//ul//span[text()='Asset Manager']")).waitUntilEnabled().waitUntilClickable().click();
                 break;
             case "Global Admin":
-                this.adminRole.waitUntilEnabled().waitUntilClickable().sendKeys(Keys.ARROW_DOWN, Keys.ARROW_DOWN, Keys.ENTER);
+                this.adminRole.waitUntilClickable().click();
+                this.adminRole.find(By.xpath("./..//ul//span[text()='Global Admin']")).waitUntilEnabled().waitUntilClickable().click();
                 break;
             case "Global Salary Admin":
-                this.adminRole.waitUntilEnabled().waitUntilClickable().sendKeys(Keys.ARROW_DOWN, Keys.ARROW_DOWN, Keys.ARROW_DOWN, Keys.ENTER);
+                this.adminRole.waitUntilClickable().click();
+                this.adminRole.find(By.xpath("./..//ul//span[text()=Global Salary Admin']")).waitUntilEnabled().waitUntilClickable().click();
                 break;
             case "Recruitment Manager":
-                this.adminRole.waitUntilEnabled().waitUntilClickable().sendKeys(Keys.ARROW_DOWN, Keys.ARROW_DOWN, Keys.ARROW_DOWN, Keys.ARROW_DOWN, Keys.ENTER);
+                this.adminRole.waitUntilClickable().click();
+                this.adminRole.find(By.xpath("./..//ul//span[text()='Recruitment Manager']")).waitUntilEnabled().waitUntilClickable().click();
                 break;
             case "Regional HR Admin":
-                this.adminRole.waitUntilEnabled().waitUntilClickable().sendKeys(Keys.ARROW_DOWN, Keys.ARROW_DOWN, Keys.ARROW_DOWN, Keys.ARROW_DOWN, Keys.ARROW_DOWN, Keys.ENTER);
+                this.adminRole.waitUntilClickable().click();
+                this.adminRole.find(By.xpath("./..//ul//span[text()='Regional HR Admin']")).waitUntilEnabled().waitUntilClickable().click();
                 break;
             case "Time Manager":
-                this.adminRole.waitUntilEnabled().waitUntilClickable().sendKeys(Keys.ARROW_DOWN, Keys.ARROW_DOWN, Keys.ARROW_DOWN, Keys.ARROW_DOWN, Keys.ARROW_DOWN, Keys.ARROW_DOWN, Keys.ENTER);
+                this.adminRole.waitUntilClickable().click();
+                this.adminRole.find(By.xpath("./..//ul//span[text()=Time Manager']")).waitUntilEnabled().waitUntilClickable().click();
                 break;
             default:
                 log.info("Wrong Admin Role name! Admin Role wasn't changed");
