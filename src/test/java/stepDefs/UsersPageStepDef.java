@@ -54,6 +54,16 @@ public class UsersPageStepDef extends DefaultStepsData {
         softly.assertThat(allItems.get(0).getRegions()).as("Region field is not empty").isEqualTo(row.get("Region"));
     }
 
+    @Then("filter by Admin Role value is $adminRole")
+    public void checkThatAdminRoleSaved(String adminRole) {
+        softly.assertThat(usersSteps.getAdminRole()).as("Wrong Admin Role value").isEqualTo(adminRole);
+    }
+
+    @Then("filter by Status value is $status")
+    public void checkThatStatusSaved(String status) {
+        softly.assertThat(usersSteps.getStatus()).as("Wrong Status value").isEqualTo(status);
+    }
+
     @When("I open filter users window")
     public void openFilterUsersWindow() {
         usersSteps.openFilterWindow();

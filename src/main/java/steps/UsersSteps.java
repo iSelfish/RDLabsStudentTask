@@ -60,6 +60,20 @@ public class UsersSteps extends DefaultStepsData {
     }
 
     @Step
+    public String getStatus() {
+        FilterUsersModalWindow filterUsersModalWindow = FILTER_USERS_WINDOW.get();
+        log.info("Getting Status");
+        return filterUsersModalWindow.getStatus().getValue();
+    }
+
+    @Step
+    public String getAdminRole() {
+        FilterUsersModalWindow filterUsersModalWindow = FILTER_USERS_WINDOW.get();
+        log.info("Getting Admin Role");
+        return filterUsersModalWindow.getAdminRole().getValue();
+    }
+
+    @Step
     public boolean employeeIsShown(String employeeName) {
         List<UsersGrid> allItems;
         int amountOfShownEmployees = 0;

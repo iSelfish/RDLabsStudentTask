@@ -25,7 +25,6 @@ And filter users by Status Disabled
 And I click on the Search button in Filter Users window
 Then I check that Employee with name Cassidy Hope is not shown in the search result
 
-
 !-- TODO implement this scenario
 Scenario: AC-3 Filter by Admin Role 'Global Admin' and check that Employee with name Cecil Bonaparte is shown in the search result
 Meta: @regression
@@ -34,7 +33,13 @@ And filter users by Admin Role Global Admin
 And I click on the Search button in Filter Users window
 Then I check that Employee with name Cecil Bonaparte is shown in the search result
 
-
-
 !-- TODO implement this scenario
 Scenario: AC-4 Check that values saved after closing filter users window
+Meta: @regression
+When I open filter users window
+And filter users by Admin Role Global Salary Admin
+And filter users by Status Enabled
+And I click on the Search button in Filter Users window
+And I open filter users window
+Then filter by Admin Role value is Global Salary Admin
+And filter by Status value is Enabled
