@@ -13,6 +13,7 @@ import java.util.Collections;
 import java.util.List;
 
 import static utils.SessionVariables.ADD_WORK_SHIFT_WINDOW;
+import static utils.SessionVariables.TIME_PICKER;
 
 @Getter
 @Slf4j
@@ -49,6 +50,18 @@ public class WorkShiftsSteps extends DefaultStepsData {
         log.info("Clicking on the [Save] button");
         AddWorkShiftModalWindow addWorkShiftModalWindow = ADD_WORK_SHIFT_WINDOW.get();
         addWorkShiftModalWindow.getSaveButton().waitUntilClickable().click();
+    }
+
+    @Step
+    public void setFromTimeWithTimePicker(String time) {
+        log.info("Setting [From] time");
+        AddWorkShiftModalWindow addWorkShiftModalWindow = ADD_WORK_SHIFT_WINDOW.get();
+        addWorkShiftModalWindow.getFromClockIcon().waitUntilClickable().click();
+        TimePicker timePicker = TIME_PICKER.get();
+        String[] newTimer = time.split(":");
+        int hours = Integer.parseInt(newTimer[0]);
+        int minutes = Integer.parseInt(newTimer[1]);
+
     }
 
     @Step

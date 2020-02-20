@@ -23,6 +23,11 @@ public class WorkShiftsStepDefs extends DefaultStepsData {
         workShiftsSteps.clickOnSaveButton();
     }
 
+    @When("Using time picker set $time value into $field filed")
+    public void setTime(String time, String field) {
+        workShiftsSteps.setFromTimeWithTimePicker(time);
+    }
+
     @Then("$text error message is shown under Work Shift field")
     public void checkErrorMessageUnderWorkShiftField(String text) {
         softly.assertThat(workShiftsSteps.getTextFromWorkShiftErrorField())

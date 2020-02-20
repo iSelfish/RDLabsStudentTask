@@ -26,5 +26,7 @@ public class AddWorkShiftModalWindow {
         this.workShiftNameInputField = addWorkShiftModal.find(By.xpath(".//input[@id='name']"));
         this.fromInputField = addWorkShiftModal.find(By.xpath(".//input[@id='start_time']"));
         this.fromClockIcon = fromInputField.find(By.xpath("./..//i[contains(@class,'time-picker-open-icon')]"));
+        this.toInputField = addWorkShiftModal.find(By.xpath(".//input[@id='end_time']"));
+        this.toInputField = toInputField.find(By.xpath("./..//i[contains(@class,'time-picker-open-icon')]"));
     }
 }
