@@ -20,7 +20,6 @@ public class WorkShiftsStepDefs extends DefaultStepsData {
 
     @Then("Rows in Work Shift column have $values default values")
     public void checkDefaultValuesOfWorkShiftColumn(List<String> expectedWorkShiftValues) {
-        workShiftsSteps.checkDefaultValuesOfWorkShiftColumn(expectedWorkShiftValues);
         softly.assertThat(workShiftsSteps.checkDefaultValuesOfWorkShiftColumn(expectedWorkShiftValues))
                 .as("Actual [Work Shift] values equals expected ones").isTrue();
     }
