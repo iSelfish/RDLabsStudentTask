@@ -15,7 +15,18 @@ public class WorkShiftsStepDefs extends DefaultStepsData {
 
     @When("I click on Add Work Shift button")
     public void clickOnAddWorkShiftButton() {
-        workShiftsSteps.clickOnAddWorkShiftButton();
+        workShiftsSteps.openAddWorkShiftWindow();
+    }
+
+    @When("I click on Save button in Add Work Shift window")
+    public void clickOnSaveButton() {
+        workShiftsSteps.clickOnSaveButton();
+    }
+
+    @Then("$text error message is shown under Work Shift field")
+    public void checkErrorMessageUnderWorkShiftField(String text) {
+        softly.assertThat(workShiftsSteps.getTextFromWorkShiftErrorField())
+                .as("After checking error message under Work Shift field").isEqualTo(text);
     }
 
     @Then("Rows in Work Shift column have $values default values")

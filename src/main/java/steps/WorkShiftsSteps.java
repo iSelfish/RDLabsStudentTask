@@ -4,12 +4,15 @@ import grids.WorkShiftGrid;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import net.thucydides.core.annotations.Step;
+import org.openqa.selenium.By;
 import pageComponents.AddWorkShiftModalWindow;
 import pageComponents.TimePicker;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import static utils.SessionVariables.ADD_WORK_SHIFT_WINDOW;
 
 @Getter
 @Slf4j
@@ -35,9 +38,24 @@ public class WorkShiftsSteps extends DefaultStepsData {
     }
 
     @Step
-    public void clickOnAddWorkShiftButton() {
+    public void openAddWorkShiftWindow() {
         log.info("Clicking on the [Add work shift] button");
         workShiftPage.getAddWorkShiftButton().waitUntilClickable().click();
+        ADD_WORK_SHIFT_WINDOW.put(new AddWorkShiftModalWindow(workShiftPage.getAddWorkShiftWindow()));
+    }
+
+    @Step
+    public void clickOnSaveButton() {
+        log.info("Clicking on the [Save] button");
+        AddWorkShiftModalWindow addWorkShiftModalWindow = ADD_WORK_SHIFT_WINDOW.get();
+        addWorkShiftModalWindow.getSaveButton().waitUntilClickable().click();
+    }
+
+    @Step
+    public String getTextFromWorkShiftErrorField() {
+        AddWorkShiftModalWindow addWorkShiftModalWindow = ADD_WORK_SHIFT_WINDOW.get();
+        return addWorkShiftModalWindow.getWorkShiftNameInputField()
+                .find(By.xpath("../span[@class='help-block']")).waitUntilEnabled().getText();
     }
 
     @Step

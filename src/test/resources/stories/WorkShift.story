@@ -17,6 +17,10 @@ Then Rows in Work Shift column have General, Twilight default values
 
 !-- TODO implement this scenario
 Scenario: AC-2 Check that Work Shift field on Add work shift model requiired
+Meta: @regression
+When I click on Add Work Shift button
+And I click on Save button in Add Work Shift window
+Then Required error message is shown under Work Shift field
 
 !-- TODO implement this scenario
 Scenario: AC-3 Check that value in Hours Per Day field calculated propertly

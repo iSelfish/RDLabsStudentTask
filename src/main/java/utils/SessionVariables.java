@@ -14,7 +14,8 @@ public enum SessionVariables {
     FIRST_NAME,
     LAST_NAME,
     MIDDLE_NAME,
-    FILTER_USERS_WINDOW;
+    FILTER_USERS_WINDOW,
+    ADD_WORK_SHIFT_WINDOW;
 
     SessionVariables() {
         this.var = name();
