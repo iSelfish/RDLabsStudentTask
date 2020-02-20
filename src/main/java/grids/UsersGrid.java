@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Getter
-public class UsersGrid extends Grid {
+public class UsersGrid extends Grid<UsersGrid> {
 
     private Checkbox checkbox;
     private String userName;

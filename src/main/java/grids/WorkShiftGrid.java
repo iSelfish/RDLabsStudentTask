@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Getter
-public class WorkShiftGrid extends Grid {
+public class WorkShiftGrid extends Grid<WorkShiftGrid> {
 
     private Checkbox checkbox;
     private String workShift;
@@ -36,6 +36,12 @@ public class WorkShiftGrid extends Grid {
     public WorkShiftGrid(RemoteWebElement webElement) {
         this.rowElement = webElement;
         List<WebElement> cells = rowElement.findElements(cellPath);
+        this.checkbox = new Checkbox(cells.get(0).findElement(By.xpath(".//label")));
+        this.workShift = cells.get(1).findElement(By.xpath(".//span")).getText();
+        this.from = cells.get(2).findElement(By.xpath(".//span")).getText();
+        this.to = cells.get(3).findElement(By.xpath(".//span")).getText();
+        this.hoursPerDay = cells.get(4).findElement(By.xpath(".//span")).getText();
+        this.editIcon = cells.get(5).findElement(By.xpath(".//i"));
     }
 
     @SuppressWarnings("unchecked")
