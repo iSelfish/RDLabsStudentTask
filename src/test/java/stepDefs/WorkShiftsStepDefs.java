@@ -1,14 +1,11 @@
 package stepDefs;
 
-import grids.WorkShiftGrid;
 import net.thucydides.core.annotations.Steps;
 import org.jbehave.core.annotations.Then;
 import org.jbehave.core.annotations.When;
 import steps.DefaultStepsData;
 import steps.WorkShiftsSteps;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class WorkShiftsStepDefs extends DefaultStepsData {
