@@ -17,7 +17,7 @@ public class AddWorkShiftModalWindow {
     private WebElementFacade fromClockIcon;
     private WebElementFacade toInputField;
     private WebElementFacade toClockIcon;
-    private WebElementFacade hoursPerDayInputField;
+    private WebElementFacade hoursPerDayField;
 
     public AddWorkShiftModalWindow(WebElementFacade addWorkShiftModal) {
         this.addWorkShiftModal = addWorkShiftModal;
@@ -28,5 +28,7 @@ public class AddWorkShiftModalWindow {
         this.fromClockIcon = fromInputField.find(By.xpath("./..//i[contains(@class,'time-picker-open-icon')]"));
         this.toInputField = addWorkShiftModal.find(By.xpath(".//input[@id='end_time']"));
         this.toInputField = toInputField.find(By.xpath("./..//i[contains(@class,'time-picker-open-icon')]"));
+        this.toClockIcon = toInputField.find(By.xpath("./..//i[contains(@class,'time-picker-open-icon')]"));
+        this.hoursPerDayField = addWorkShiftModal.find(By.xpath("//input[@id='hoursPerDay']"));
     }
 }

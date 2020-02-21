@@ -24,8 +24,11 @@ Then Required error message is shown under Work Shift field
 
 !-- TODO implement this scenario
 Scenario: AC-3 Check that value in Hours Per Day field calculated propertly
-Meta: @regression @debug
+Meta: @regression
 When I click on Add Work Shift button
 And Using time picker set 10:50 value into From filed
-
-
+And Using time picker set 18:20 value into To filed
+Then 7.50 value is calculated in Hours Per Day field
+When Using time picker set 8:05 value into From filed
+And Using time picker set 20:25 value into To filed
+Then 12.33 value is calculated in Hours Per Day field

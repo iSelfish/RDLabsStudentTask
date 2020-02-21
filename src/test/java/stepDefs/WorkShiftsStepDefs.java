@@ -25,7 +25,7 @@ public class WorkShiftsStepDefs extends DefaultStepsData {
 
     @When("Using time picker set $time value into $field filed")
     public void setTime(String time, String field) {
-        workShiftsSteps.setFromTimeWithTimePicker(time);
+        workShiftsSteps.setTimeWithTimePicker(time, field);
     }
 
     @Then("$text error message is shown under Work Shift field")
@@ -38,5 +38,11 @@ public class WorkShiftsStepDefs extends DefaultStepsData {
     public void checkDefaultValuesOfWorkShiftColumn(List<String> expectedWorkShiftValues) {
         softly.assertThat(workShiftsSteps.checkDefaultValuesOfWorkShiftColumn(expectedWorkShiftValues))
                 .as("Actual [Work Shift] values equals expected ones").isTrue();
+    }
+
+    @Then("$expectedValue value is calculated in Hours Per Day field")
+    public void checkThatValueInHoursPerDayFieldEquals(String expectedValue) {
+        softly.assertThat(workShiftsSteps.getValueFromHoursPerDayField())
+                .as("After checking value from Hours Per Day field").isEqualTo(expectedValue);
     }
 }

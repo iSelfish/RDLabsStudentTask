@@ -3,6 +3,7 @@ package steps;
 import grids.WorkShiftGrid;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
+import net.serenitybdd.core.pages.WebElementFacade;
 import net.thucydides.core.annotations.Step;
 import org.openqa.selenium.By;
 import pageComponents.AddWorkShiftModalWindow;
@@ -13,7 +14,6 @@ import java.util.Collections;
 import java.util.List;
 
 import static utils.SessionVariables.ADD_WORK_SHIFT_WINDOW;
-import static utils.SessionVariables.TIME_PICKER;
 
 @Getter
 @Slf4j
@@ -53,15 +53,36 @@ public class WorkShiftsSteps extends DefaultStepsData {
     }
 
     @Step
-    public void setFromTimeWithTimePicker(String time) {
+    public void setTimeWithTimePicker(String time, String field) {
         log.info("Setting [From] time");
         AddWorkShiftModalWindow addWorkShiftModalWindow = ADD_WORK_SHIFT_WINDOW.get();
-        addWorkShiftModalWindow.getFromClockIcon().waitUntilClickable().click();
-        TimePicker timePicker = TIME_PICKER.get();
-        String[] newTimer = time.split(":");
-        int hours = Integer.parseInt(newTimer[0]);
-        int minutes = Integer.parseInt(newTimer[1]);
+        if (field.equals("From")) {
+            addWorkShiftModalWindow.getFromClockIcon().waitUntilClickable().click();
+        }
+        if (field.equals("To")) {
+            addWorkShiftModalWindow.getToClockIcon().waitUntilClickable().click();
+        }
+        String[] hoursAndMinutes = time.split(":");
+        List<WebElementFacade> hoursBoard = getTimePickerElement().getHoursBoard();
+        List<WebElementFacade> minutesBoard = getTimePickerElement().getMinutesBoard();
+        for (WebElementFacade hour : hoursBoard) {
+            if (hour.getText().equals(hoursAndMinutes[0])) {
+                hour.waitUntilEnabled().waitUntilClickable().click();
+            }
+        }
+        for (WebElementFacade minute : minutesBoard) {
+            if (minute.waitUntilVisible().getText().equals(hoursAndMinutes[1])) {
+                minute.waitUntilVisible().waitUntilClickable().click();
+            }
+        }
+        getTimePickerElement().getOkButton().waitUntilEnabled().waitUntilClickable().click();
+    }
 
+    @Step
+    public String getValueFromHoursPerDayField() {
+        log.info("Getting value from [Hours Per Day] field");
+        AddWorkShiftModalWindow addWorkShiftModalWindow = ADD_WORK_SHIFT_WINDOW.get();
+        return addWorkShiftModalWindow.getHoursPerDayField().waitUntilVisible().getValue();
     }
 
     @Step
