@@ -75,7 +75,7 @@ public class FilterUsersModalWindow {
                 break;
             case "Global Salary Admin":
                 this.adminRole.waitUntilClickable().click();
-                this.adminRole.find(By.xpath("./..//ul//span[text()=Global Salary Admin']")).waitUntilEnabled().waitUntilClickable().click();
+                this.adminRole.find(By.xpath("./..//ul//span[text()='Global Salary Admin']")).waitUntilEnabled().waitUntilClickable().click();
                 break;
             case "Recruitment Manager":
                 this.adminRole.waitUntilClickable().click();
@@ -87,7 +87,7 @@ public class FilterUsersModalWindow {
                 break;
             case "Time Manager":
                 this.adminRole.waitUntilClickable().click();
-                this.adminRole.find(By.xpath("./..//ul//span[text()=Time Manager']")).waitUntilEnabled().waitUntilClickable().click();
+                this.adminRole.find(By.xpath("./..//ul//span[text()='Time Manager']")).waitUntilEnabled().waitUntilClickable().click();
                 break;
             default:
                 log.info("Wrong Admin Role name! Admin Role wasn't changed");
