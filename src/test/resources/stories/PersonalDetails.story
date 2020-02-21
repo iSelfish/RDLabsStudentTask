@@ -13,7 +13,7 @@ Meta: @regression
 Then check box Smoker is not checked
 
 Scenario: AC-2 Check value in Date of Birth field is not saved after refresh page without clicking on Save button
-Meta: @regression
+Meta: @regression @debug
 Then I save current Date of Birth to session
 When I change Date of Birth added 1 day to old date
 And refresh page
@@ -38,7 +38,7 @@ And Male radio button is checked
 
 !-- TODO implement this scenario
 Scenario: AC-5 Check that error message "Should be on or before today" must be shown if user enter birth date in future (next day after today)
-Meta: @regression
+Meta: @regression @debug
 When I set Date Of Birth as tomorrow date
 And I click save button
 Then Date of birth error message with text 'Should be on or before today' appears
