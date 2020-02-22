@@ -8,8 +8,6 @@ Given I am on the login page of application
 And I login to application with username 'admin' and password 'admin123'
 And I go to Work Shifts page
 
-!-- https://jbehave.org/reference/latest/parameter-converters.html
-
 Scenario: AC-1 Check that by default General and Twilight work shifts types are shown on work shifts page
 Meta: @regression @new
 Then Rows in Work Shift column have General, Twilight default values
