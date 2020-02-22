@@ -10,21 +10,18 @@ And I go to Work Shifts page
 
 !-- https://jbehave.org/reference/latest/parameter-converters.html
 
-!-- TODO implement this scenario
 Scenario: AC-1 Check that by default General and Twilight work shifts types are shown on work shifts page
-Meta: @regression
+Meta: @regression @new
 Then Rows in Work Shift column have General, Twilight default values
 
-!-- TODO implement this scenario
 Scenario: AC-2 Check that Work Shift field on Add work shift model requiired
-Meta: @regression
+Meta: @regression @new
 When I click on Add Work Shift button
 And I click on Save button in Add Work Shift window
 Then Required error message is shown under Work Shift field
 
-!-- TODO implement this scenario
 Scenario: AC-3 Check that value in Hours Per Day field calculated propertly
-Meta: @regression
+Meta: @regression @new
 When I click on Add Work Shift button
 And Using time picker set 10:50 value into From filed
 And Using time picker set 18:20 value into To filed
