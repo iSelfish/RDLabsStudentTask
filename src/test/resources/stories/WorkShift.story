@@ -9,7 +9,7 @@ And I login to application with username 'admin' and password 'admin123'
 And I go to Work Shifts page
 
 Scenario: AC-1 Check that by default General and Twilight work shifts types are shown on work shifts page
-Meta: @regression @new @debug
+Meta: @regression @new
 Then Rows in Work Shift column have General, Twilight default values
 
 Scenario: AC-2 Check that Work Shift field on Add work shift model requiired
