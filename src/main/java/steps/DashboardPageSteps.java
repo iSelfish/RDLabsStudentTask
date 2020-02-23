@@ -54,10 +54,10 @@ public class DashboardPageSteps extends DefaultStepsData {
         String countText;
         switch (newsOrDocuments) {
             case "News":
-                countText = dashboardPage.getNewsCount().getText().split("/")[1].trim();
+                countText = dashboardPage.getNewsCount().waitUntilVisible().getText().split("/")[1].trim();
                 return Integer.parseInt(countText);
             case "Documents":
-                countText = dashboardPage.getDocumentsCount().getText().split("/")[1].trim();
+                countText = dashboardPage.getDocumentsCount().waitUntilVisible().getText().split("/")[1].trim();
                 return Integer.parseInt(countText);
         }
         return -1;
@@ -73,9 +73,9 @@ public class DashboardPageSteps extends DefaultStepsData {
         ItemsContainer itemsContainer = ItemsContainer.getItemsContainerName(sectionName);
         switch (itemsContainer) {
             case NEWS:
-                return dashboardPage.getNewsHeader().getText();
+                return dashboardPage.getNewsHeader().waitUntilVisible().getText();
             case DOCUMENTS:
-                return dashboardPage.getDocumentsHeader().getText();
+                return dashboardPage.getDocumentsHeader().waitUntilVisible().getText();
             default:
                 throw new IllegalStateException("Unexpected value: " + itemsContainer);
         }
