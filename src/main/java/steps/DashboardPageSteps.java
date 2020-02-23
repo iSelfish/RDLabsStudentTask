@@ -51,14 +51,11 @@ public class DashboardPageSteps extends DefaultStepsData {
 
     @Step
     public int getShowingCountOf(String newsOrDocuments) {
-        String countText;
         switch (newsOrDocuments) {
             case "News":
-                countText = dashboardPage.getNewsCount().waitUntilVisible().getText().split("/")[1].trim();
-                return Integer.parseInt(countText);
+                return Integer.parseInt(dashboardPage.getNewsCount().waitUntilVisible().getText().split("/")[1].trim());
             case "Documents":
-                countText = dashboardPage.getDocumentsCount().waitUntilVisible().getText().split("/")[1].trim();
-                return Integer.parseInt(countText);
+                return Integer.parseInt(dashboardPage.getDocumentsCount().waitUntilVisible().getText().split("/")[1].trim());
         }
         return -1;
     }
