@@ -18,7 +18,7 @@ public class UsersSteps extends DefaultStepsData {
     public void openFilterWindow() {
         log.info("Opens Filter Users window");
         usersPage.clickOnFilterButton();
-        FILTER_USERS_WINDOW.put(new FilterUsersModalWindow(usersPage.getFilterUsersModalWindow()));
+        FILTER_USERS_WINDOW.put(new FilterUsersModalWindow(usersPage.getFilterUsersModalWindow().waitUntilVisible()));
     }
 
     @Step
