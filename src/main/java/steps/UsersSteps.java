@@ -39,7 +39,7 @@ public class UsersSteps extends DefaultStepsData {
         log.info("Filtering by Employee Name: " + employeeName);
         log.info("Typing employee name into [Employee Name] input field");
         filterUsersModalWindow.getEmployeeNameField().waitUntilEnabled().sendKeys(employeeName);
-        WebElementFacade employeeDropDown = filterUsersModalWindow.getEmployeeNameField().find(By.xpath("./..//div[contains(@class,'angucomplete-row')]"));
+        WebElementFacade employeeDropDown = filterUsersModalWindow.getEmployeeNameField().waitUntilEnabled().find(By.xpath("./..//div[contains(@class,'angucomplete-row')]"));
         log.info("Clicking on the autocomplete search result");
         employeeDropDown.waitUntilVisible().waitUntilClickable().click();
         employeeDropDown.waitUntilNotVisible();
