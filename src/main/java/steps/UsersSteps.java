@@ -7,6 +7,7 @@ import net.thucydides.core.annotations.Step;
 import org.openqa.selenium.By;
 import pageComponents.FilterUsersModalWindow;
 
+import java.time.Duration;
 import java.util.List;
 
 import static utils.SessionVariables.FILTER_USERS_WINDOW;
@@ -39,7 +40,7 @@ public class UsersSteps extends DefaultStepsData {
         log.info("Filtering by Employee Name: " + employeeName);
         log.info("Typing employee name into [Employee Name] input field");
         filterUsersModalWindow.getEmployeeNameField().waitUntilEnabled().sendKeys(employeeName);
-        filterUsersModalWindow.getEmployeeNameField().find(By.xpath("./..//div[contains(@class,'angucomplete-searching')]")).waitUntilNotVisible();
+        filterUsersModalWindow.getEmployeeNameField().find(By.xpath("./..//div[contains(@class,'angucomplete-searching')]")).withTimeoutOf(Duration.ofSeconds(15)).waitUntilNotVisible();
         WebElementFacade employeeDropDown = filterUsersModalWindow.getEmployeeNameField().find(By.xpath("./..//div[contains(@class,'angucomplete-row')]"));
         log.info("Clicking on the autocomplete search result");
         employeeDropDown.waitUntilVisible().waitUntilClickable().click();
