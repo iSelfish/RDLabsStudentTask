@@ -35,30 +35,24 @@ public class UsersSteps extends DefaultStepsData {
     }
 
     @Step
-    public void filterUsersByEmployeeName(String employeeName) {
+    public void filterUsersBy(String select, String value) {
         FilterUsersModalWindow filterUsersModalWindow = FILTER_USERS_WINDOW.get();
-        log.info("Filtering by Employee Name: " + employeeName);
-        log.info("Typing employee name into [Employee Name] input field");
-        filterUsersModalWindow.getEmployeeNameField().waitUntilEnabled().sendKeys(employeeName);
-        filterUsersModalWindow.getEmployeeNameField().find(By.xpath("./..//div[contains(@class,'angucomplete-searching')]")).withTimeoutOf(Duration.ofSeconds(15)).waitUntilNotVisible();
-        WebElementFacade employeeDropDown = filterUsersModalWindow.getEmployeeNameField().find(By.xpath("./..//div[contains(@class,'angucomplete-row')]"));
-        log.info("Clicking on the autocomplete search result");
-        employeeDropDown.waitUntilVisible().waitUntilClickable().click();
-        employeeDropDown.waitUntilNotVisible();
-    }
-
-    @Step
-    public void changeStatusTo(String status) {
-        FilterUsersModalWindow filterUsersModalWindow = FILTER_USERS_WINDOW.get();
-        log.info("Filtering by Status: " + status);
-        filterUsersModalWindow.changeStatusTo(status);
-    }
-
-    @Step
-    public void changeAdminRoleTo(String adminRole) {
-        FilterUsersModalWindow filterUsersModalWindow = FILTER_USERS_WINDOW.get();
-        log.info("Filtering by Admin Role: " + adminRole);
-        filterUsersModalWindow.changeAdminRoleTo(adminRole);
+        switch (select) {
+            case "Employee Name":
+                log.info("Filtering by Employee Name: " + value);
+                filterUsersModalWindow.changeEmployeeNameTo(value);
+                break;
+            case "Status":
+                log.info("Filtering by Status: " + value);
+                filterUsersModalWindow.changeStatusTo(value);
+                break;
+            case "Admin Role":
+                log.info("Filtering by Admin Role: " + value);
+                filterUsersModalWindow.changeAdminRoleTo(value);
+                break;
+            default:
+                throw new IllegalStateException("Unexpected value");
+        }
     }
 
     @Step

@@ -6,6 +6,8 @@ import net.serenitybdd.core.pages.WebElementFacade;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 
+import java.time.Duration;
+
 @Getter
 @Slf4j
 public class FilterUsersModalWindow {
@@ -41,58 +43,25 @@ public class FilterUsersModalWindow {
         this.searchButton.waitUntilEnabled().waitUntilClickable().click();
     }
 
+    public void changeEmployeeNameTo(String employeeName) {
+        log.info("Change Employee Name to " + employeeName);
+        this.employeeNameField.waitUntilEnabled().sendKeys(employeeName);
+        this.employeeNameField.find(By.xpath("./..//div[contains(@class,'angucomplete-searching')]")).withTimeoutOf(Duration.ofSeconds(15)).waitUntilNotVisible();
+        WebElementFacade employeeDropDown = this.employeeNameField.find(By.xpath("./..//div[contains(@class,'angucomplete-row')]"));
+        employeeDropDown.waitUntilVisible().waitUntilClickable().click();
+        employeeDropDown.waitUntilNotVisible();
+    }
+
     public void changeStatusTo(String status) {
         log.info("Change Status to " + status);
-        switch (status) {
-            case "All":
-                this.status.waitUntilClickable().click();
-                this.status.find(By.xpath("./..//ul//span[text()='All']")).waitUntilEnabled().waitUntilClickable().click();
-                break;
-            case "Disabled":
-                this.status.waitUntilClickable().click();
-                this.status.find(By.xpath("./..//ul//span[text()='Disabled']")).waitUntilEnabled().waitUntilClickable().click();
-                break;
-            case "Enabled":
-                this.status.waitUntilClickable().click();
-                this.status.find(By.xpath("./..//ul//span[text()='Enabled']")).waitUntilEnabled().waitUntilClickable().click();
-                break;
-            default:
-                log.info("Wrong status name! Status wasn't changed");
-                break;
-        }
+        this.status.waitUntilClickable().click();
+        this.status.find(By.xpath("./..//ul//span[text()='" + status + "']")).waitUntilEnabled().waitUntilClickable().click();
     }
 
     public void changeAdminRoleTo(String adminRole) {
         log.info("Change Admin Role to " + adminRole);
-        switch (adminRole) {
-            case "Asset Manager":
-                this.adminRole.waitUntilClickable().click();
-                this.adminRole.find(By.xpath("./..//ul//span[text()='Asset Manager']")).waitUntilEnabled().waitUntilClickable().click();
-                break;
-            case "Global Admin":
-                this.adminRole.waitUntilClickable().click();
-                this.adminRole.find(By.xpath("./..//ul//span[text()='Global Admin']")).waitUntilEnabled().waitUntilClickable().click();
-                break;
-            case "Global Salary Admin":
-                this.adminRole.waitUntilClickable().click();
-                this.adminRole.find(By.xpath("./..//ul//span[text()='Global Salary Admin']")).waitUntilEnabled().waitUntilClickable().click();
-                break;
-            case "Recruitment Manager":
-                this.adminRole.waitUntilClickable().click();
-                this.adminRole.find(By.xpath("./..//ul//span[text()='Recruitment Manager']")).waitUntilEnabled().waitUntilClickable().click();
-                break;
-            case "Regional HR Admin":
-                this.adminRole.waitUntilClickable().click();
-                this.adminRole.find(By.xpath("./..//ul//span[text()='Regional HR Admin']")).waitUntilEnabled().waitUntilClickable().click();
-                break;
-            case "Time Manager":
-                this.adminRole.waitUntilClickable().click();
-                this.adminRole.find(By.xpath("./..//ul//span[text()='Time Manager']")).waitUntilEnabled().waitUntilClickable().click();
-                break;
-            default:
-                log.info("Wrong Admin Role name! Admin Role wasn't changed");
-                break;
-        }
+        this.adminRole.waitUntilClickable().click();
+        this.adminRole.find(By.xpath("./..//ul//span[text()='" + adminRole + "']")).waitUntilEnabled().waitUntilClickable().click();
     }
 
     public void clickOnCancelButton() {

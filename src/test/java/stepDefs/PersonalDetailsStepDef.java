@@ -9,12 +9,11 @@ import steps.PersonalDetailsSteps;
 
 import java.util.List;
 
-import static utils.DateUtils.DATEPATTERN_MY;
+import static utils.DateUtils.DATEPATTERN_NEW;
 import static utils.DateUtils.getDateInFutureOrPastFromNow;
 import static utils.SessionVariables.DATE_OF_BIRTH;
 
 public class PersonalDetailsStepDef extends DefaultStepsData {
-
     @Steps
     PersonalDetailsSteps personalDetailsSteps;
 
@@ -45,23 +44,22 @@ public class PersonalDetailsStepDef extends DefaultStepsData {
                 .as("After getting Race and Ethnicity error message").isEqualTo(errorText);
     }
 
-    @Then("EEO Race and Ethnicity select has NO value by default")
-    public void checkRaceAndEthnicityHasNoValueByDefault() {
+    @Then("EEO Race and Ethnicity select has $value value by default")
+    public void checkRaceAndEthnicityHasNoValueByDefault(String value) {
         softly.assertThat(personalDetailsSteps.getValueFromRaceAndEthnicitySelect())
-                .as("After checking value Race and Ethnicity select").isEqualTo("-- Select --");
+                .as("After checking value Race and Ethnicity select").isEqualTo(value);
     }
 
     @When("I change Date of Birth added 1 day to old date")
     public void changeDateOfBirth() {
         String currentDate = personalDetailsSteps.getValueFromDateOfBirthField();
-        String updatedDate = getDateInFutureOrPastFromNow(DATEPATTERN_MY, 1, currentDate);
+        String updatedDate = getDateInFutureOrPastFromNow(DATEPATTERN_NEW, 1, currentDate);
         personalDetailsSteps.enterDateIntoDateBirthField(updatedDate);
     }
 
     @When("I set Date Of Birth as tomorrow date")
     public void setTomorrowDateOfBirth() {
-        String currentDate = personalDetailsSteps.getValueFromDateOfBirthField();
-        String updatedDate = getDateInFutureOrPastFromNow(DATEPATTERN_MY, 1);
+        String updatedDate = getDateInFutureOrPastFromNow(DATEPATTERN_NEW, 1);
         personalDetailsSteps.enterDateIntoDateBirthField(updatedDate);
     }
 

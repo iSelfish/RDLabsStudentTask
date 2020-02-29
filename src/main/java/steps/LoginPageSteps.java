@@ -24,8 +24,8 @@ public class LoginPageSteps extends DefaultStepsData {
     }
 
     @Step
-    public String getTextFromInvalidCredentialsPopUp() {
-        return loginPage.getTextFromInvalidCredentialsPopUp();
+    public String getTextFromPopUp() {
+        return loginPage.getTextFromPopUp();
     }
 
     @Step

@@ -9,6 +9,8 @@ import org.openqa.selenium.By;
 @Getter
 @Slf4j
 public class PersonalDetailsPage extends BasePage {
+    public final static String MALE = "Male";
+    public final static String FEMALE = "Female";
 
     @FindBy(css = "#personal_details_tab h4")
     private WebElementFacade personalDetailsHeader;
@@ -49,15 +51,14 @@ public class PersonalDetailsPage extends BasePage {
     public void clickOnGenderRadioButton(String gender) {
         log.info("set gender radio button checked");
         switch (gender) {
-            case ("Male"):
+            case MALE:
                 maleRadioButton.waitUntilClickable().click();
                 break;
-            case ("Female"):
+            case FEMALE:
                 femaleRadioButton.waitUntilClickable().click();
                 break;
             default:
-                System.out.println("Such gender wasn't found");
-                break;
+                throw new IllegalStateException("Invalid gender");
         }
     }
 
@@ -69,14 +70,12 @@ public class PersonalDetailsPage extends BasePage {
     public boolean checkSelectedGenderRadioButton(String gender) {
         log.info("check selected gender radio button");
         switch (gender) {
-            case ("Male"):
+            case MALE:
                 return Boolean.parseBoolean(maleRadioButton.findElement(By.xpath("./../input")).getAttribute("checked"));
-            case ("Female"):
-                log.info("check that {} radio button is checked", gender);
+            case FEMALE:
                 return Boolean.parseBoolean(femaleRadioButton.findElement(By.xpath("./../input")).getAttribute("checked"));
             default:
-                System.out.println("Such gender wasn't found");
-                return false;
+                throw new IllegalStateException("Invalid gender");
         }
     }
 }

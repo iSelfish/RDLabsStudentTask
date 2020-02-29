@@ -33,9 +33,6 @@ public class LoginPage extends BasePage {
     @FindBy(css = ".social-buttons")
     private WebElementFacade socialMediaContainer;
 
-    @FindBy(css = "#toast-container")
-    private WebElementFacade invalidCredentialsPopUpContainer;
-
     public void enterUserName(String userName) {
         log.info("Login to app with userName " + userName);
         loginInputField.waitUntilVisible().waitUntilClickable().clear();
@@ -47,12 +44,11 @@ public class LoginPage extends BasePage {
         return loginInputField.waitUntilVisible().waitUntilClickable().getValue();
     }
 
-    public String getTextFromInvalidCredentialsPopUp() {
-        log.info("Getting text from Invalid Credentials pop up");
-        PopUp popUp = new PopUp(getInvalidCredentialsPopUpContainer().waitUntilVisible());
+    public String getTextFromPopUp() {
+        log.info("Getting text from pop up");
+        PopUp popUp = new PopUp(getPopUpElement().waitUntilVisible());
         return popUp.getPopUpMessage();
     }
-
 
     public void enterPassword(String password) {
         log.info("Login to app with password " + password);
@@ -69,5 +65,4 @@ public class LoginPage extends BasePage {
         log.info("Clicking on the [Login as a Different Role] button");
         loginAsDifferentRoleButton.waitUntilVisible().waitUntilClickable().click();
     }
-
 }

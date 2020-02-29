@@ -61,7 +61,7 @@ public class DashboardPageStepDef extends DefaultStepsData {
                 .as("Wrong News header").isEqualTo(headerText);
     }
 
-    @Then("$text counter under $text section is same as real amount of $text in list")
+    @Then("counter under $text section is same as real amount of ones in list")
     public void checkCountEqualsToRealAmount(String newsOrDocuments) {
         softly.assertThat(dashboardPageSteps.getShowingCountOf(newsOrDocuments))
                 .as("Wrong documents counter").isEqualTo(dashboardPageSteps.getRealCountOf(newsOrDocuments));

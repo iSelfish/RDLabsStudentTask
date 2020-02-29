@@ -38,7 +38,7 @@ public class LoginPageStepDef extends DefaultStepsData {
 
     @Then("pop up message with text '$text' is shown")
     public void checkPopUpMessageWithText(String text) {
-        softly.assertThat(loginPageSteps.getTextFromInvalidCredentialsPopUp()).as("Wrong text in Invalid Credentials pop up")
+        softly.assertThat(loginPageSteps.getTextFromPopUp()).as("Wrong text in Invalid Credentials pop up")
                 .isEqualTo(text);
     }
 

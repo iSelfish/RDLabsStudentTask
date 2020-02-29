@@ -1,5 +1,6 @@
 package pages;
 
+import emuns.ItemsContainer;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import net.serenitybdd.core.annotations.findby.FindBy;
@@ -62,19 +63,22 @@ public class DashboardPage extends BasePage {
         hideMenuButton.waitUntilVisible().waitUntilClickable().click();
     }
 
-    public int getRealCountOf(String newsOrDocuments) {
+    public int getRealCountOf(String sectionName) {
         List<String> container = new ArrayList<>();
-        switch (newsOrDocuments) {
-            case "News":
+        ItemsContainer itemsContainer = ItemsContainer.getItemsContainerName(sectionName);
+        switch (itemsContainer) {
+            case NEWS:
                 for (WebElement element : getDriver().findElements(allNews)) {
                     container.add(element.getText());
                 }
                 break;
-            case "Documents":
+            case DOCUMENTS:
                 for (WebElement element : getDriver().findElements(allDocuments)) {
                     container.add(element.getText());
                 }
                 break;
+            default:
+                throw new IllegalStateException("Unexpected value: " + itemsContainer);
         }
         return sizeOf(container);
     }

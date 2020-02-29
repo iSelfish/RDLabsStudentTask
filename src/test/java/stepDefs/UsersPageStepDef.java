@@ -16,19 +16,9 @@ public class UsersPageStepDef extends DefaultStepsData {
     @Steps
     private UsersSteps usersSteps;
 
-    @When("filter users by Employee Name $userName")
-    public void filterUsersByEmployeeName(String employeeName) {
-        usersSteps.filterUsersByEmployeeName(employeeName);
-    }
-
-    @When("filter users by Status $status")
-    public void filterUsersByStatus(String status) {
-        usersSteps.changeStatusTo(status);
-    }
-
-    @When("filter users by Admin Role $adminRole")
-    public void filterUsersAdminRole(String adminRole) {
-        usersSteps.changeAdminRoleTo(adminRole);
+    @When("filter users by $select : $value")
+    public void filterUsersBy(String select, String value) {
+        usersSteps.filterUsersBy(select, value);
     }
 
     @Then("I check that Employee with name $name is $condition in the search result")

@@ -26,13 +26,9 @@ Then I check that all countries in Nationality select box ordered by name asc
 Scenario: AC-4 user not allow to check both Male and Female radio button in Gender section
 Meta: @regression @newTask
 When I click on Male radio button
-And I click on Female radio button
-Then Female radio button is checked
-And Male radio button is not checked
-When I click on Female radio button
-And I click on Male radio button
 Then Female radio button is not checked
-And Male radio button is checked
+When I click on Female radio button
+Then Male radio button is not checked
 
 Scenario: AC-5 Check that error message "Should be on or before today" must be shown if user enter birth date in future (next day after today)
 Meta: @regression @newTask
@@ -42,6 +38,6 @@ Then Date of birth error message with text 'Should be on or before today' appear
 
 Scenario: AC-6 Check that error message with text Required appears under EEO Race and Ethnicity field after click on Save button
 Meta: @regression @newTask
-Then EEO Race and Ethnicity select has NO value by default
+Then EEO Race and Ethnicity select has -- Select -- value by default
 When I click save button
 Then EEO Race and Ethnicity error message with text 'Required' appears

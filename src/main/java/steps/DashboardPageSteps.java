@@ -50,14 +50,16 @@ public class DashboardPageSteps extends DefaultStepsData {
     }
 
     @Step
-    public int getShowingCountOf(String newsOrDocuments) {
-        switch (newsOrDocuments) {
-            case "News":
+    public int getShowingCountOf(String sectionName) {
+        ItemsContainer itemsContainer = ItemsContainer.getItemsContainerName(sectionName);
+        switch (itemsContainer) {
+            case NEWS:
                 return Integer.parseInt(dashboardPage.getNewsCount().waitUntilVisible().getText().split("/")[1].trim());
-            case "Documents":
+            case DOCUMENTS:
                 return Integer.parseInt(dashboardPage.getDocumentsCount().waitUntilVisible().getText().split("/")[1].trim());
+            default:
+                throw new IllegalStateException("Unexpected value: " + itemsContainer);
         }
-        return -1;
     }
 
     @Step
